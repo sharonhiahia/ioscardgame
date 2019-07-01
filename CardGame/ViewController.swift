@@ -40,8 +40,12 @@ class ViewController: UIViewController {
     
     private func randonmizeCard(){
         
-        leftNum = Int.random(in: 2...14)
+        // arc4random_uniform returns a random number less than upper_bound
+        // arc4random_uniform(15))
         
+        
+        // Int.random() returns a random num in the range. '...' inclusive the bounds
+        leftNum = Int.random(in: 2...14)
         rightNum = Int.random(in: 2...14)
         
         leftImageView.image = UIImage(named: "card\(leftNum)")
