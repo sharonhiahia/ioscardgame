@@ -28,12 +28,29 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        ramdonCard()
+        randonmizeCard()
     }
 
     @IBAction func dealTapped(_ sender: Any) {
         //print("deal tapped.")
-        ramdonCard()
+        randonmizeCard()
+        updateScore()
+        
+    }
+    
+    private func randonmizeCard(){
+        
+        leftNum = Int.random(in: 2...14)
+        
+        rightNum = Int.random(in: 2...14)
+        
+        leftImageView.image = UIImage(named: "card\(leftNum)")
+        rightImageView.image = UIImage(named: "card\(rightNum)")
+        
+        
+    }
+    
+    private func updateScore(){
         
         if leftNum > rightNum{
             leftScore += 1
@@ -46,18 +63,11 @@ class ViewController: UIViewController {
         else{
             // tie, no action
         }
-        
     }
     
-    private func ramdonCard(){
-        leftNum = Int.random(in: 2...14)
-        
-        rightNum = Int.random(in: 2...14)
-        
-        leftImageView.image = UIImage(named: "card\(leftNum)")
-        rightImageView.image = UIImage(named: "card\(rightNum)")
-        
-        
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        randonmizeCard()
+        updateScore()
     }
     
 }
